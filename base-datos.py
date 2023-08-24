@@ -19,8 +19,8 @@ def estudiante_insert(codigo = 0, nombre = ""):
         port=7171
     )
     mycursor = mydb.cursor()
-    sql = "INSERT INTO student (code, name) VALUES (%s, %s)"
-    val = (codigo, nombre)
+    sql = "INSERT INTO student (code, name, nota) VALUES (%s, %s, %s)"
+    val = (codigo, nombre, nota)
     mycursor.execute(sql,val)
     mydb.commit()
     return True
@@ -63,6 +63,16 @@ def estudiantepost():
             return jsonify({"message":"success"})
     except Exception as e:
         return jsonify({"message":"Error. " + str(e)}), 400 
+    
+#@app.route('/estudiante', methods=['PUT'])
+#def estudianteput():
+ #   try:
+  #      estudiante_nota = request.form['nota']
+   #     respuesta = estudiante_insert(estudiante_nota)
+    #    if(respuesta):
+     #       return jsonify({"message":"success"})
+    #except Exception as e:
+     #   return jsonify({"message":"Error. " + str(e)}), 400 
 
 
 
